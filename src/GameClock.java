@@ -127,7 +127,6 @@ public class GameClock {
 	
 	public void increment(){
 		frames++;
-		//System.out.println("Frames: "+frames);
 		if(frames >= framesPerSecond){
 			frames = 0;
 			seconds++;
@@ -143,7 +142,6 @@ public class GameClock {
 				}
 			}
 		}
-		//System.out.println("f:"+this.frames+" s: "+this.seconds+" M: "+this.minutes+" H: "+this.hours);
 	}
 	
 	public void changeFramesPerSecond(int framesPerSecond){
@@ -171,7 +169,6 @@ public class GameClock {
 		if(timer != -1){
 			drawTic(2*Math.PI * this.timer / 30, (clickFaceSize/2)*3/4, clickFaceSize/2, g);
 		}
-		//System.out.println(" s: "+seconds+" M: "+minutes+" H: "+hours);
 		drawHand(2*Math.PI * hours / 12, clickFaceSize/5, g);
 		drawHand(2*Math.PI * minutes / 30, clickFaceSize/3, g);
 		g.setColor(Color.RED);

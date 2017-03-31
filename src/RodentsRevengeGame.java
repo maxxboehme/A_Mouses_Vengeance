@@ -231,7 +231,6 @@ public class RodentsRevengeGame extends JPanel {
 			}
 			//}
 
-			//System.out.println("CurrentState: "+currentState+" setting up: "+this.isSettingUp());
 			//Repaint the board and side panel with the new content.
 			board.repaint();
 			top.repaint();
@@ -242,7 +241,6 @@ public class RodentsRevengeGame extends JPanel {
 			 * incredibly accurate, it is sufficient for our purposes.
 			 */
 			long delta = (System.currentTimeMillis() - start);
-			//System.out.println("Delta: "+delta);
 			if(delta < FRAME_TIME) {
 				try {
 					Thread.sleep(FRAME_TIME - delta);
@@ -283,13 +281,8 @@ public class RodentsRevengeGame extends JPanel {
 			boolean nextLevel = needToMoveOn && this.cats.size() == 0;
 			boolean newRound = false;
 
-
-			//System.out.println("currentRound: "+this.currentRound+" numRounds: "+numOfRoundsInLevel);
-			//System.out.println("needToMoveOn: "+needToMoveOn+" NextLeve: "+nextLevel);
-
 			if(this.gameClock.getMinutes() == this.gameClock.getTimer() && !needToMoveOn){
 				newRound = true;
-				System.out.println("increastedRounds");
 				this.currentRound++;
 				needToMoveOn = this.currentRound == numOfRoundsInLevel;
 				nextLevel = needToMoveOn && this.cats.size() == 0;
@@ -358,7 +351,6 @@ public class RodentsRevengeGame extends JPanel {
 				}
 
 				this.catUpdateClock++;
-				//System.out.println("catUpdateClock; "+this.catUpdateClock);
 				if(this.catUpdateClock >= this.catTime){
 					int sleepingCats = 0;
 					for(Point p: this.cats){
@@ -444,11 +436,9 @@ public class RodentsRevengeGame extends JPanel {
 
 	private void testScore(int score){
 		if(this.lifeScore >= 100){
-			//System.out.println("Score: "+this.score+" LIfe: "+this.lifeScore);
 			this.livesLeft++;
 			this.lifeScore -= 100;
-			testScore(this.lifeScore); // for
-			//System.out.println("Score: "+this.score);
+			testScore(this.lifeScore);
 		}
 	}
 
@@ -458,7 +448,6 @@ public class RodentsRevengeGame extends JPanel {
 			int timeTillUpdate = yb.getTimeTillUpdate();
 			if(timeTillUpdate == 0){
 				int rand = random.nextInt(6);
-				//System.out.println("Random: "+rand);
 				if(yb.isJustCreated() || rand > 0){
 					LinkedList<Point> points = this.freePointsAround(yb.getPosition());
 					if(points.isEmpty()){
@@ -636,10 +625,8 @@ public class RodentsRevengeGame extends JPanel {
 		TileType result = null;
 		pf.parseBoard(this.board);
 		LinkedList<Node> path = pf.findPath(p, this.mouse);
-		//System.out.println("Path: "+path);
 		if(path.size() >= 2){
 			board.setTile(p, null);
-			//System.out.println("MOVE: "+path.get(1));
 			p.x = path.get(1).getX();
 			p.y = path.get(1).getY();
 			result = board.getTile(p.x, p.y);
@@ -657,10 +644,8 @@ public class RodentsRevengeGame extends JPanel {
 		} else {
 			pf.parseBoard(this.board);
 			LinkedList<Node> path = pf.findPath(p, this.mouse);
-			//System.out.println("Path: "+path);
 			if(path.size() >= 2){
 				board.setTile(p, null);
-				//System.out.println("MOVE: "+path.get(1));
 				p.x = path.get(1).getX();
 				p.y = path.get(1).getY();
 				result = board.getTile(p.x, p.y);
@@ -676,8 +661,6 @@ public class RodentsRevengeGame extends JPanel {
 					board.setTile(p, TileType.Cat);
 				} else {
 					Point move = this.moveCat(p, points);
-					//System.out.println("Move: "+move.x+", "+move.y);
-					//System.out.println("Point: "+p.x+", "+p.y);
 					if(move != null){
 						board.setTile(p, null);
 						p.x = move.x;
@@ -770,15 +753,12 @@ public class RodentsRevengeGame extends JPanel {
 	private boolean canMoveBlock(Point p, Direction direction){
 		boolean result = false;
 		Point d = RodentsRevengeGame.direction(direction);
-		//System.out.println("POINT: "+p+" Direction: "+d);
 		Point newPoint = new Point(p.x + d.x, p.y + d.y);
 		if(newPoint.x < 0 || newPoint.x >= BoardPanel.COL_COUNT || newPoint.y < 0 || newPoint.y >= BoardPanel.ROW_COUNT){
 			return false;
 		}
 		TileType pt = board.getTile(p.x, p.y);
 		TileType newpt = board.getTile(newPoint.x, newPoint.y);
-		//System.out.println("Point: "+p+" TileType: "+pt);
-		//System.out.println("NEWPOINT: "+newPoint+" TileType: "+newpt);
 
 		if(newpt == TileType.Wall){
 			result = false;
@@ -831,7 +811,6 @@ public class RodentsRevengeGame extends JPanel {
 					}
 				} else if(newpt == TileType.Block){
 					if(canMoveBlock(newPoint, direction)){
-						//System.out.println(pt);
 						if(pt == TileType.Cat){
 							for(Point cat: this.cats){
 								if(cat.x == p.x && cat.y == p.y){
@@ -1256,7 +1235,6 @@ public class RodentsRevengeGame extends JPanel {
 		l6.setFramesForYarnBallGeneration(this.FRAMES_PER_SECOND*10);
 
 		int maxEmpty = 6*(BoardPanel.COL_COUNT-2)+6*(BoardPanel.ROW_COUNT-8);
-		//System.out.println("Max empty: "+maxEmpty);
 		int index = random.nextInt(maxEmpty);
 
 		int freeFound = -1;
@@ -1268,7 +1246,6 @@ public class RodentsRevengeGame extends JPanel {
 					if(type == null) {
 						if(++freeFound == index) {
 							l6.setMouseLocation(x, y);
-							//System.out.println("hey: "+x+", "+y+ " :: "+type);
 							placed = true;
 						}
 					}
@@ -1346,7 +1323,6 @@ public class RodentsRevengeGame extends JPanel {
 		}
 
 		maxEmpty = 6*(BoardPanel.COL_COUNT-2)+6*(BoardPanel.ROW_COUNT-8);
-		//System.out.println("Max empty: "+maxEmpty);
 		index = random.nextInt(maxEmpty);
 
 		freeFound = -1;
@@ -1355,7 +1331,6 @@ public class RodentsRevengeGame extends JPanel {
 			for(int y = 0; y < BoardPanel.ROW_COUNT && !placed; y++) {
 				TileType type = l12.getTile(x, y);
 				if((y < 5 || y > BoardPanel.ROW_COUNT-5) || (x < 5 || x > BoardPanel.COL_COUNT-5)){
-					//System.out.println("hey: "+x+", "+y+ " :: "+type);
 					if(type == null) {
 						if(++freeFound == index) {
 							l12.setMouseLocation(x, y);
@@ -1449,7 +1424,6 @@ public class RodentsRevengeGame extends JPanel {
 		l18.setTimePerRound(5);
 		
 		maxEmpty = 6*(BoardPanel.COL_COUNT-2)+6*(BoardPanel.ROW_COUNT-8);
-		//System.out.println("Max empty: "+maxEmpty);
 		index = random.nextInt(maxEmpty);
 
 		freeFound = -1;
@@ -1458,7 +1432,6 @@ public class RodentsRevengeGame extends JPanel {
 			for(int y = 0; y < BoardPanel.ROW_COUNT && !placed; y++) {
 				TileType type = l18.getTile(x, y);
 				if((y < 5 || y > BoardPanel.ROW_COUNT-5) || (x < 5 || x > BoardPanel.COL_COUNT-5)){
-					//System.out.println("hey: "+x+", "+y+ " :: "+type);
 					if(type == null) {
 						if(++freeFound == index) {
 							l18.setMouseLocation(x, y);
@@ -1523,15 +1496,12 @@ public class RodentsRevengeGame extends JPanel {
 			int maxEmpty = BoardPanel.COL_COUNT*BoardPanel.ROW_COUNT-board.getNumberOfWallTiles();
 			int index = random.nextInt(maxEmpty);
 
-			//System.out.println("Level: "+this.currentLevel+" :: "+board.getNumberOfWallTiles());
 			int freeFound = -1;
 			boolean placed = false;
 			for(int x = 0; x < BoardPanel.COL_COUNT && !placed; x++) {
 				for(int y = 0; y < BoardPanel.ROW_COUNT && !placed; y++) {
 					TileType type = board.getTile(x, y);
-					//System.out.print("Type: "+type);
 					if(type != TileType.Wall) {
-						//System.out.println(" Yes: "+freeFound+" "+index);
 						if(++freeFound == index) {
 							board.setTile(x, y, t);
 							placed = true;
@@ -1550,7 +1520,6 @@ public class RodentsRevengeGame extends JPanel {
 			rands.add(random.nextInt(maxEmpty));
 			maxEmpty--;
 		}
-		//System.out.println(t+" "+rands);
 
 
 		if(!rands.isEmpty()){
@@ -1560,9 +1529,7 @@ public class RodentsRevengeGame extends JPanel {
 			for(int x = 0; x < BoardPanel.COL_COUNT && !done; x++) {
 				for(int y = 0; y < BoardPanel.ROW_COUNT && !done; y++) {
 					TileType type = board.getTile(x, y);
-					//System.out.print("Type: "+type);
 					if(type != TileType.Wall) {
-						//System.out.println(" Yes: "+freeFound+" "+index);
 						if(++freeFound >= index) {
 							board.setTile(x, y, t);
 							if(rands.isEmpty()){
@@ -1584,7 +1551,6 @@ public class RodentsRevengeGame extends JPanel {
 			rands.add(random.nextInt(maxEmpty));
 			maxEmpty--;
 		}
-		//System.out.println(t+" "+rands);
 
 		if(!rands.isEmpty()){
 			int freeFound = -1;
@@ -1593,9 +1559,7 @@ public class RodentsRevengeGame extends JPanel {
 			for(int x = 0; x < BoardPanel.COL_COUNT && !done; x++) {
 				for(int y = 0; y < BoardPanel.ROW_COUNT && !done; y++) {
 					TileType type = board.getTile(x, y);
-					//System.out.print("Type: "+type);
 					if(type == null || type == TileType.Block) {
-						//System.out.println(" Yes: "+freeFound+" "+index);
 						if(++freeFound >= index) {
 							board.setTile(x, y, t);
 							l.add(new Point(x, y));
@@ -1626,9 +1590,7 @@ public class RodentsRevengeGame extends JPanel {
 			for(int x = 0; x < BoardPanel.COL_COUNT && !done; x++) {
 				for(int y = 0; y < BoardPanel.ROW_COUNT && !done; y++) {
 					TileType type = board.getTile(x, y);
-					//System.out.print("Type: "+type);
 					if(type == null) {
-						//System.out.println(" Yes: "+freeFound+" "+index);
 						if(++freeFound >= index) {
 							board.setTile(x, y, t);
 							if(rands.isEmpty()){
@@ -1653,9 +1615,7 @@ public class RodentsRevengeGame extends JPanel {
 			for(int x = 0; x < BoardPanel.COL_COUNT && !placed; x++) {
 				for(int y = 0; y < BoardPanel.ROW_COUNT && !placed; y++) {
 					TileType type = board.getTile(x, y);
-					//System.out.print("Type: "+type);
 					if(type == null) {
-						//System.out.println(" Yes: "+freeFound+" "+index);
 						if(++freeFound == index) {
 							board.setTile(x, y, t);
 							placed = true;

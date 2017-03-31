@@ -79,8 +79,6 @@ public class PathFinder {
 	public boolean isPath(Point start, Point goal){
 		Node startNode = this.getNode(start);
 		Node goalNode = this.getNode(goal);
-//		System.out.println(startNode);
-//		System.out.println(goalNode);
 		startNode.setCostFromStart(0);
 		startNode.setEstimatedCost(startNode.getEstimatedCost(goalNode));
 		startNode.setPathParent(null);
@@ -116,15 +114,8 @@ public class PathFinder {
 					}
 				}
 			}
-//			try {
-//				Thread.sleep(0);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
 			n.setVisited(true);
 		}
-		//System.out.println("DONE");
 		return found;
 	}
 	

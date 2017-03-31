@@ -56,7 +56,7 @@ public class TopPanel extends JPanel{
 		setBackground(Color.LIGHT_GRAY);
 		
 		try {
-			this.mouse = ImageIO.read(new File("Images/MouseSitting.png"));
+			this.mouse = ImageIO.read(getClass().getResource("Images/MouseSitting.png"));
 		} catch (IOException e) {
 			this.mouse = null;
 		}

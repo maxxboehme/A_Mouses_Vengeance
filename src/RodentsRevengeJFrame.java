@@ -91,7 +91,6 @@ public class RodentsRevengeJFrame extends JFrame {
 			@Override
 			public void itemStateChanged(ItemEvent a) {
 				if(a.getStateChange() == ItemEvent.SELECTED){
-					System.out.println("Slow");
 					game.changeDifficulty(Difficulty.SLOW);
 				}
 			}
@@ -227,7 +226,6 @@ public class RodentsRevengeJFrame extends JFrame {
 				 * Reset the game if one is not currently in progress.
 				 */
 				case KeyEvent.VK_ENTER:
-					System.out.println("Entered");
 					game.enter();
 					break;
 				}

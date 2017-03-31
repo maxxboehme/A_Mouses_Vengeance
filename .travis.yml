@@ -1,0 +1,18 @@
+language: java
+
+# Request for Ubuntu 14.04 Trusty VM
+sudo: true
+dist: trusty
+
+jdk:
+    - oraclejdk8
+    - oraclejdk7
+    - openjdk7
+
+before_script:
+    - mkdir build
+    - cd build
+    - cmake ..
+
+script:
+    - cmake --build .

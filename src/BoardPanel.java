@@ -112,23 +112,23 @@ public class BoardPanel extends JPanel {
 		setPreferredSize(new Dimension(COL_COUNT * TILE_SIZE, ROW_COUNT * TILE_SIZE));
 		setBackground(new Color(127, 128, 1));
 		try {
-			this.mouse = ImageIO.read(new File("Images/Mouse2.png"));
-			this.wall = ImageIO.read(new File("Images/Wall.png"));
-			this.cat = ImageIO.read(new File("Images/Cat.png"));
-			this.block = ImageIO.read(new File("Images/Block.png"));
-			this.sleepingCat  = ImageIO.read(new File("Images/SleepingCat.png"));
-			this.sinkHole = ImageIO.read(new File("Images/SinkHole.png"));
-			this.MouseTrap = ImageIO.read(new File("Images/MouseTrap.png"));
-			this.mouseInHole = ImageIO.read(new File("Images/MouseInHole.png"));
-			this.Cheese = ImageIO.read(new File("Images/Cheese.png"));
-			this.YarnBall = ImageIO.read(new File("Images/YarnBall.png"));
-			String fileName = "Images/MouseDeadFrames/DeadFrame";
+			this.mouse = ImageIO.read(getClass().getResource("Images/Mouse2.png"));
+			this.wall = ImageIO.read(getClass().getResource("Images/Wall.png"));
+			this.cat = ImageIO.read(getClass().getResource("Images/Cat.png"));
+			this.block = ImageIO.read(getClass().getResource("Images/block.png"));
+			this.sleepingCat  = ImageIO.read(getClass().getResource("Images/SleepingCat.png"));
+			this.sinkHole = ImageIO.read(getClass().getResource("Images/SinkHole.png"));
+			this.MouseTrap = ImageIO.read(getClass().getResource("Images/MouseTrap.png"));
+			this.mouseInHole = ImageIO.read(getClass().getResource("Images/MouseInHole.png"));
+			this.Cheese = ImageIO.read(getClass().getResource("Images/Cheese.png"));
+			this.YarnBall = ImageIO.read(getClass().getResource("Images/YarnBall.png"));
+			String fileName = "Images/MouseDeadFrames/deadFrame";
 			File f = new File(fileName+"1.png");
 			int num = 1;
 			ArrayList<BufferedImage> a =new ArrayList<BufferedImage>();
 			while(f.exists()){
 				for(int i = 0; i < 4; i++){
-					a.add(ImageIO.read(new File(fileName+num+".png")));
+					a.add(ImageIO.read(getClass().getResource(fileName+num+".png")));
 				}
 				num++;
 				f = new File(fileName+num+".png");
