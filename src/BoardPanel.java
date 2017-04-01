@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.net.URL;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -123,15 +124,15 @@ public class BoardPanel extends JPanel {
 			this.Cheese = ImageIO.read(getClass().getResource("Images/Cheese.png"));
 			this.YarnBall = ImageIO.read(getClass().getResource("Images/YarnBall.png"));
 			String fileName = "Images/MouseDeadFrames/deadFrame";
-			File f = new File(fileName+"1.png");
+			URL url = getClass().getResource(fileName + "1.png");
 			int num = 1;
-			ArrayList<BufferedImage> a =new ArrayList<BufferedImage>();
-			while(f.exists()){
+			ArrayList<BufferedImage> a = new ArrayList<BufferedImage>();
+			while(url != null){
 				for(int i = 0; i < 4; i++){
-					a.add(ImageIO.read(getClass().getResource(fileName+num+".png")));
+					a.add(ImageIO.read(getClass().getResource(fileName + num + ".png")));
 				}
 				num++;
-				f = new File(fileName+num+".png");
+				url = getClass().getResource(fileName + num + ".png");
 			}
 			dead = new BufferedImage[a.size()];
 			a.toArray(dead);
