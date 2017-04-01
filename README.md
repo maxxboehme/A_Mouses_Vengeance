@@ -9,3 +9,5 @@ A Java remake of the 1991 game, Rodent's Revenge
 Remembered playing it on my parents old Packard Bell computer and wanted to remake to play it again.
 Also wanted to share it with friends.
 
+![Animated Demonstration](https://github.com/maxxboehme/A_Mouses_Vengeance/raw/master/doc/images/ExampleAMousesVengeance.gif)
+
